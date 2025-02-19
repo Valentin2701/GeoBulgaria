@@ -5,7 +5,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EmailErrorComponent } from './components/email-error/email-error.component';
 import { PasswordErrorComponent } from './components/password-error/password-error.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     EmailErrorComponent,
     PasswordErrorComponent,
-    ReactiveFormsModule
   ],
 })
 export class UserModule { }

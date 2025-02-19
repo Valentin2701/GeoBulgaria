@@ -32,7 +32,9 @@
             formControlName="email"
           />
         </h1>
-        <app-email-error *ngIf="form.get('email')?.touched"/>
+        @if(form.get('email')?.touched){
+        <app-email-error/>
+        }
       </i>
     </section>
     <ng-container formGroupName="passGroup">
@@ -47,7 +49,9 @@
               formControlName="password"
             />
           </h1>
-          <app-password-error *ngIf="form.get('passGroup')?.get('password')?.touched"/>
+          @if(form.get('passGroup')?.get('password')?.touched){
+          <app-password-error/>
+          }
         </i>
       </section>
       <section style="height: 14%; width: 90%" class="centered-flex">
@@ -61,20 +65,24 @@
               formControlName="rePass"
             />
           </h1>
-          <ng-container *ngIf="form.get('passGroup')?.get('rePass')?.touched">
+          @if(form.get('passGroup')?.get('rePass')?.touched){
+          <ng-container>
+            @if(form.get('passGroup')?.get('rePass')?.errors?.['required']){
             <p
               class="error"
-              *ngIf="form.get('passGroup')?.get('rePass')?.errors?.['required']"
             >
               Потвърди парола е задължителна!
             </p>
+        }
+        @if(form.get('passGroup')?.get('rePass')?.errors?.['passwordMatchValidator']){
             <p
               class="error"
-              *ngIf="form.get('passGroup')?.get('rePass')?.errors?.['passwordMatchValidator']"
             >
               Двете пароли не са еднакви!
             </p>
+        }
           </ng-container>
+        }
         </i>
       </section>
     </ng-container>
