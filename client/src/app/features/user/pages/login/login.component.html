@@ -1,0 +1,45 @@
+<br />
+<div id="login-style">
+  <section
+    style="height: 24%; margin: 0; padding: 0; align-items: baseline"
+    class="centered-flex"
+  >
+    <h1 style="color: whitesmoke; font-size: 65px">Влизане</h1>
+  </section>
+  <hr style="width: 40%" />
+<form [formGroup]="form" (ngSubmit)="login()">
+    <section style="height: 13%; width: 90%" class="centered-flex">
+        <i>
+            <h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+                Имейл:
+                <input
+                    style="width: 70%"
+                    class="input-style"
+                    formControlName="email"
+                />
+            </h1>
+        </i>
+        <app-email-error *ngIf="form.get('email')?.touched"></app-email-error>
+    </section>
+    <section style="height: 14%; width: 90%" class="centered-flex">
+        <i>
+            <h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+                Парола:
+                <input
+                    type="password"
+                    style="width: 70%"
+                    class="input-style"
+                    formControlName="password"
+                />
+            </h1>
+        </i>
+        <app-password-error *ngIf="form.get('password')?.touched"></app-password-error>
+    </section>
+    <button id="verify-button" style="align-items: center">Влез</button>
+    <hr />
+    <h5 style="color: whitesmoke; font-size: 19px">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нямате профил?
+        <a routerLink="/register">Регистрирайте се</a>
+    </h5>
+</form>
+</div>

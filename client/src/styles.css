@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    background-color: lightblue;
+}
+
+.centered-flex {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: end;
+}
+
+#left-sec {
+    color: white;
+    text-align: center; 
+}
+
+.error{
+    color: red;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-snackbar {
+    background-color: #f44336 !important;  /* Red background */
+    color: white;               /* White text */
+    font-weight: bold;          /* Bold text */
+    border-radius: 4px;         /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for a little depth */
+  }
+  
+  /* Style for success snackbar (green color) */
+  .success-snackbar {
+    background-color: #4caf50 !important;  /* Green background */
+    color: white;               /* White text */
+    font-weight: bold;          /* Bold text */
+    border-radius: 4px;         /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for a little depth */
+  }
+  
+  /* Customize the snackbar container */
+  ::ng-deep .mat-snack-bar-container {
+    z-index: 9999;  /* Ensure it's on top of other content */
+  }

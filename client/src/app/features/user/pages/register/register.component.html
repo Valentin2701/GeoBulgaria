@@ -1,0 +1,88 @@
+<br />
+
+<div id="register-style">
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <section
+      style="height: 18%; margin: 0; padding: 0; align-items: baseline"
+      class="centered-flex"
+    >
+      <h1 style="color: whitesmoke; font-size: 65px">Регистрация</h1>
+    </section>
+    <hr style="width: 40%" />
+    <section style="height: 13%; width: 90%" class="centered-flex">
+      <i
+        ><h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+          Име:
+          <input
+            style="width: 70%"
+            class="input-style"
+            formControlName="username"
+          />
+        </h1>
+      </i>
+    </section>
+    <hr style="width: 40%"/>
+    <section style="height: 13%; width: 90%" class="centered-flex">
+      <i
+        ><h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+          Имейл:
+          <input
+            style="width: 70%"
+            class="input-style"
+            formControlName="email"
+          />
+        </h1>
+        <app-email-error *ngIf="form.get('email')?.touched"/>
+      </i>
+    </section>
+    <ng-container formGroupName="passGroup">
+      <section style="height: 13%; width: 90%" class="centered-flex">
+        <i
+          ><h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+            Парола:
+            <input
+              type="password"
+              style="width: 70%"
+              class="input-style"
+              formControlName="password"
+            />
+          </h1>
+          <app-password-error *ngIf="form.get('passGroup')?.get('password')?.touched"/>
+        </i>
+      </section>
+      <section style="height: 14%; width: 90%" class="centered-flex">
+        <i
+          ><h1 style="color: whitesmoke; font-size: 33px; text-align: center">
+            Потвърди парола:
+            <input
+              type="password"
+              style="width: 50%"
+              class="input-style"
+              formControlName="rePass"
+            />
+          </h1>
+          <ng-container *ngIf="form.get('passGroup')?.get('rePass')?.touched">
+            <p
+              class="error"
+              *ngIf="form.get('passGroup')?.get('rePass')?.errors?.['required']"
+            >
+              Потвърди парола е задължителна!
+            </p>
+            <p
+              class="error"
+              *ngIf="form.get('passGroup')?.get('rePass')?.errors?.['passwordMatchValidator']"
+            >
+              Двете пароли не са еднакви!
+            </p>
+          </ng-container>
+        </i>
+      </section>
+    </ng-container>
+    <button id="verify-button">Регистрирай се</button>
+    <hr />
+    <h5 style="color: whitesmoke; font-size: 19px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вече имате акаунт?
+      <a routerLink="/login">Влезте в акаунта си</a>
+    </h5>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+#profile-style {
+    border-radius: 15px;
+    margin: 0 auto;
+    width: 60%;
+    height: 445pt;
+    background-color: black;
+}
+#profile-picture {
+    width: 30%; 
+    margin-left: 20px; 
+    margin-right: 60px; 
+    float: left;
+}
