@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,8 +10,9 @@ import { RouterModule } from '@angular/router';
 })
 export class NavComponent {
 
-
+  constructor(public authService: AuthService) { }
+  
   logout() {
-    
+    this.authService.logout();
   }
 }

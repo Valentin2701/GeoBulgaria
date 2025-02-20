@@ -1,29 +1,34 @@
 <header class="container1">
-    <section id="left-sec">
-      <h1 style="font-size: 60px; margin: 0">ГеоБългария</h1>
-    </section>
-    <div class="container2">
-      <a routerLink="/map" class="tr">
-        <h1 style="font-size: 26px">Карта</h1>
-      </a>
-      <a routerLink="/profile"  class="tr">
-        <h1 style="font-size: 26px">Профил</h1>
-      </a>
-      <a routerLink="/about" class="tr">
-        <h1 style="font-size: 26px">За нас</h1>
-      </a>
-      <a routerLink="/contact" class="tr">
-        <h1 style="font-size: 26px">Контакти</h1>
-      </a>
-      <a class="tr" (click)="logout()">
-        <h1 style="font-size: 26px">Изход</h1>
-      </a>
-      <a routerLink="/register" class="tr">
-        <h1 style="font-size: 26px">Регистрация</h1>
-      </a>
-      <a routerLink="/login" class="tr">
-        <h1 style="font-size: 26px">Вход</h1>
-      </a>
-    </div>
-  </header>
-  
+  <section id="left-sec">
+    <h1 style="font-size: 60px; margin: 0">ГеоБългария</h1>
+  </section>
+  <div class="container2">
+    @if(this.authService.isLoggedIn()){
+    <a routerLink="/map" class="tr">
+      <h1 style="font-size: 26px">Карта</h1>
+    </a>
+
+    <a routerLink="/profile" class="tr">
+      <h1 style="font-size: 26px">Профил</h1>
+    </a>
+    }
+    <a routerLink="/about" class="tr">
+      <h1 style="font-size: 26px">За нас</h1>
+    </a>
+    <a routerLink="/contact" class="tr">
+      <h1 style="font-size: 26px">Контакти</h1>
+    </a>
+    @if(this.authService.isLoggedIn()){
+    <a class="tr" (click)="logout()">
+      <h1 style="font-size: 26px">Изход</h1>
+    </a>
+    } @if(!this.authService.isLoggedIn()){
+    <a routerLink="/register" class="tr">
+      <h1 style="font-size: 26px">Регистрация</h1>
+    </a>
+    <a routerLink="/login" class="tr">
+      <h1 style="font-size: 26px">Вход</h1>
+    </a>
+    }
+  </div>
+</header>
