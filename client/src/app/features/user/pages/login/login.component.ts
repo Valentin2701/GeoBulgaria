@@ -5,6 +5,7 @@ import { PasswordErrorComponent } from "../../components/password-error/password
 import { UserService } from '../../services/user.service';
 import { emailValidator } from '../../../../core/validators/email-validator';
 import { RouterModule } from '@angular/router';
+import { SnackbarService } from '../../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent {
 
   form!: FormGroup;
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private snackbarSerivce: SnackbarService) {
     this.form = this.fb.group({
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required]],
@@ -27,7 +28,7 @@ export class LoginComponent {
       const { email, password } = this.form.value;
       this.userService.login(email, password);
     } else {
-      console.error('Form is invalid');
+      this.snackbarSerivce.showError('Моля попълнете всички полета правилно!');
     }
   }
 }

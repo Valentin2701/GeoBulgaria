@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { User } from '../../features/user/models/User';
 import { APIAuthResponse } from '../../features/user/models/APIAuthResponse';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   readonly isLoggedIn = computed(() => !!this.userSignal());
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService) { }
 
   get user() {
     return this.userSignal.asReadonly();
@@ -25,7 +26,7 @@ export class AuthService {
 
     return this.http.post<APIAuthResponse>('/api/register', body).pipe(
       catchError((error) => {
-        console.error('Registration failed:', error);
+        this.snackbarService.showError('Този имейл вече съществува! Опитайте да влезете в акаунта си');
         return of(null);
       })
     );
@@ -35,7 +36,7 @@ export class AuthService {
     const body = { email, password };
     return this.http.post<APIAuthResponse>('/api/login', body).pipe(
       catchError((error) => {
-        console.error('Login failed:', error);
+        this.snackbarService.showError('Невалиден имейл или парола! Опитайте отново');
         return of(null);
       })
     );
@@ -48,6 +49,7 @@ export class AuthService {
   logout() {
     return this.http.post('/api/logout', {}).subscribe(() => {
       this.userSignal.set(null);
+      this.snackbarService.showSuccess('Излязохте успешно');
       this.router.navigate(['/login']);
     });
   }

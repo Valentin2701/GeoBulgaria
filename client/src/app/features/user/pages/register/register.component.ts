@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { emailValidator } from '../../../../core/validators/email-validator';
 import { passwordMatchValidator } from '../../../../core/validators/password-match-validator';
 import { RouterModule } from '@angular/router';
+import { SnackbarService } from '../../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
 
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) { 
+  constructor(private fb: FormBuilder, private userService: UserService, private snackbarService: SnackbarService) { 
     this.form = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, emailValidator()]],
@@ -35,7 +36,7 @@ export class RegisterComponent {
       const { username, email, passGroup } = this.form.value;
       this.userService.register(username, email, passGroup.password, passGroup.rePass);
     } else {
-      console.error('Form is invalid');
+      this.snackbarService.showError('Моля попълнете всички полета правилно!');
     }
   }
 }
