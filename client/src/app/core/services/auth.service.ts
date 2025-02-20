@@ -22,7 +22,7 @@ export class AuthService {
   register(username: string, email: string, password: string, rePass: string) {
     const body = { username, email, password, rePass };
 
-    return this.http.post<User>('/register', body).pipe(
+    return this.http.post<User>('/api/register', body).pipe(
       catchError((error) => {
         console.error('Registration failed:', error);
         return of(null);
@@ -32,7 +32,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const body = { email, password };
-    return this.http.post<User>('/login', body).pipe(
+    return this.http.post<User>('/api/login', body).pipe(
       catchError((error) => {
         console.error('Login failed:', error);
         return of(null);
@@ -40,12 +40,12 @@ export class AuthService {
     );
   }
 
-  setUser(user: User) {
+  setUser(user: User | null) {
     this.userSignal.set(user);
   }
 
   logout() {
-    return this.http.post('/logout', {}).subscribe(() => {
+    return this.http.post('/api/logout', {}).subscribe(() => {
       this.userSignal.set(null);
       this.router.navigate(['/login']);
     });
