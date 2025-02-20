@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EmailErrorComponent } from "../../components/email-error/email-error.component";
 import { PasswordErrorComponent } from "../../components/password-error/password-error.component";
 import { UserService } from '../../services/user.service';
+import { emailValidator } from '../../../../core/validators/email-validator';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   form!: FormGroup;
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required]],
     });
   }

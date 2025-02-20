@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EmailErrorComponent } from "../../components/email-error/email-error.component";
 import { PasswordErrorComponent } from "../../components/password-error/password-error.component";
 import { UserService } from '../../services/user.service';
+import { emailValidator } from '../../../../core/validators/email-validator';
+import { passwordMatchValidator } from '../../../../core/validators/password-match-validator';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +19,12 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private userService: UserService) { 
     this.form = this.fb.group({
       username: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, emailValidator()]],
       passGroup: this.fb.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         rePass: ['', [Validators.required]],
       }, {
-        validators: [],
+        validators: [passwordMatchValidator("password", "rePass")],
       })
     });
   }
