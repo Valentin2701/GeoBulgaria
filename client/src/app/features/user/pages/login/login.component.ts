@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmailErrorComponent } from "../../components/email-error/email-error.component";
 import { PasswordErrorComponent } from "../../components/password-error/password-error.component";
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,16 @@ import { PasswordErrorComponent } from "../../components/password-error/password
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  fb = Inject(FormBuilder);
-  form = this.fb.group({
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-  });
+
+  form!: FormGroup;
+  constructor(private fb: FormBuilder, private userService: UserService) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   login() {
-
+    this.userService.login(this.form.value.email, this.form.value.password);
   }
 }
