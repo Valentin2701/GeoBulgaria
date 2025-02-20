@@ -4,10 +4,11 @@ import { EmailErrorComponent } from "../../components/email-error/email-error.co
 import { PasswordErrorComponent } from "../../components/password-error/password-error.component";
 import { UserService } from '../../services/user.service';
 import { emailValidator } from '../../../../core/validators/email-validator';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [EmailErrorComponent, PasswordErrorComponent, ReactiveFormsModule],
+  imports: [EmailErrorComponent, PasswordErrorComponent, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -21,7 +22,12 @@ export class LoginComponent {
     });
   }
 
-  login() {
-    this.userService.login(this.form.value.email, this.form.value.password);
+  login(): void {
+    if (this.form.valid) {
+      const { email, password } = this.form.value;
+      this.userService.login(email, password);
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }

@@ -33,7 +33,7 @@
           />
         </h1>
         @if(form.get('email')?.touched){
-        <app-email-error/>
+        <app-email-error [email]="form.get('email')"/>
         }
       </i>
     </section>
@@ -50,7 +50,7 @@
             />
           </h1>
           @if(form.get('passGroup')?.get('password')?.touched){
-          <app-password-error/>
+          <app-password-error [password]="form.get('passGroup')?.get('password')"/>
           }
         </i>
       </section>
@@ -86,7 +86,7 @@
         </i>
       </section>
     </ng-container>
-    <button id="verify-button">Регистрирай се</button>
+    <button id="verify-button" [disabled]="!form.valid">Регистрирай се</button>
     <hr />
     <h5 style="color: whitesmoke; font-size: 19px">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вече имате акаунт?

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-email-error',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './email-error.component.css'
 })
 export class EmailErrorComponent {
-
+  @Input() email: AbstractControl | undefined | null;
 }

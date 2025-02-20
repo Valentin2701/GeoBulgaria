@@ -3,6 +3,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { User } from '../../features/user/models/User';
+import { APIAuthResponse } from '../../features/user/models/APIAuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
   register(username: string, email: string, password: string, rePass: string) {
     const body = { username, email, password, rePass };
 
-    return this.http.post<User>('/api/register', body).pipe(
+    return this.http.post<APIAuthResponse>('/api/register', body).pipe(
       catchError((error) => {
         console.error('Registration failed:', error);
         return of(null);
@@ -32,7 +33,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const body = { email, password };
-    return this.http.post<User>('/api/login', body).pipe(
+    return this.http.post<APIAuthResponse>('/api/login', body).pipe(
       catchError((error) => {
         console.error('Login failed:', error);
         return of(null);

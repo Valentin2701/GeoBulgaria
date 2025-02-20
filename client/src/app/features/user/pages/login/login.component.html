@@ -20,7 +20,7 @@
             </h1>
         </i>
         @if(form.get('email')?.touched){
-        <app-email-error></app-email-error>
+        <app-email-error [email]="form.get('email')"></app-email-error>
         }
     </section>
     <section style="height: 14%; width: 90%" class="centered-flex">
@@ -36,10 +36,10 @@
             </h1>
         </i>
         @if(form.get('password')?.touched){
-        <app-password-error></app-password-error>
+        <app-password-error [password]="form.get('password')"></app-password-error>
         }
     </section>
-    <button id="verify-button" style="align-items: center">Влез</button>
+    <button id="verify-button" style="align-items: center" [disabled]="!form.valid">Влез</button>
     <hr />
     <h5 style="color: whitesmoke; font-size: 19px">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нямате профил?

@@ -1,1 +1,5 @@
-<p>email-error works!</p>
+@if(email?.errors?.['required']){
+<p class="error">Имейлът е задължителен!</p>
+} @if(email?.errors?.['emailValidator']){
+<p class="error">Имейлът е невалиден!</p>
+}
