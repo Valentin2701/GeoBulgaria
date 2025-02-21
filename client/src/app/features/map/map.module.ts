@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapMainComponent } from './pages/map-main/map-main.component';
-import { RegionInfoComponent } from './pages/region-info/region-info.component';
+import { MapRegionComponent } from './pages/map-region/map-region.component';
 
 
 
@@ -10,7 +10,7 @@ import { RegionInfoComponent } from './pages/region-info/region-info.component';
   imports: [
     CommonModule,
     MapMainComponent,
-    RegionInfoComponent
+    MapRegionComponent
   ],
 })
 export class MapModule { }
