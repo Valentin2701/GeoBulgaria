@@ -14,7 +14,7 @@ export class UserService {
 
   login(email: string, password: string) {
     this.authService.login(email, password).subscribe((response: APIAuthResponse | null) => {
-      if(response?.user) return throwError(() => response?.message);
+      if(response?.user == null) return throwError(() => response?.message);
       this.authService.setUser(response?.user ? response.user : null);
       this.snackbarService.showSuccess('Влязохте успешно');
       this.router.navigate(['/map']);

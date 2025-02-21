@@ -1,0 +1,14 @@
+.about-panel {
+    background-color: black;
+    color: white;
+    width: 80%;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.about-panel h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}

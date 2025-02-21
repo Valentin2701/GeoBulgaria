@@ -1,0 +1,24 @@
+.help-panel {
+    background-color: black;
+    color: white;
+    width: 80%;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.help-panel h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.help-panel h3, .about-panel h3 {
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.help-panel p, .about-panel p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
