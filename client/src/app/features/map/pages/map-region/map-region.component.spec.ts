@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegionInfoComponent } from './region-info.component';
+import { MapRegionComponent } from './map-region.component';
 
-describe('RegionInfoComponent', () => {
-  let component: RegionInfoComponent;
-  let fixture: ComponentFixture<RegionInfoComponent>;
+describe('MapRegionComponent', () => {
+  let component: MapRegionComponent;
+  let fixture: ComponentFixture<MapRegionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegionInfoComponent]
+      imports: [MapRegionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegionInfoComponent);
+    fixture = TestBed.createComponent(MapRegionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
