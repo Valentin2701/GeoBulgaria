@@ -20,8 +20,8 @@ mongoose
   .connect(env.DBURL)
   .then(() => {
     console.log("DB connected!");
-    app.listen(env.apiURL, () =>
-      console.log(`Server is listening on ${env.apiURL}...`)
+    app.listen(env.PORT, () =>
+      console.log(`Server is listening on port ${env.PORT}...`)
     );
   })
   .catch((err) => console.log("Failed connecting DB", err));
