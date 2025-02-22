@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from "./shared/components/nav/nav.component";
 import { FooterComponent } from "./shared/components/footer/footer.component";
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,11 @@ import { FooterComponent } from "./shared/components/footer/footer.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'client';
+export class AppComponent  implements OnInit {
+  
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.authService.fetchUserSession();
+  }
 }

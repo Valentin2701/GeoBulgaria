@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { User } from '../../features/user/models/User';
 import { APIAuthResponse } from '../../features/user/models/APIAuthResponse';
 import { SnackbarService } from './snackbar.service';
@@ -14,11 +14,30 @@ export class AuthService {
   private readonly userSignal = signal<User | null>(null);
 
   readonly isLoggedIn = computed(() => !!this.userSignal());
+  private sessionChecked = false;
 
   constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService) { }
 
   get user() {
     return this.userSignal.asReadonly();
+  }
+
+  fetchUserSession() {
+    if (this.sessionChecked) {
+      return of(this.userSignal());
+    }
+
+    return this.http.get<User | null>('/api/profile').pipe(
+      tap((user) => {
+        this.setUser(user);
+        this.sessionChecked = true;
+      }),
+      catchError(() => {
+        this.setUser(null);
+        this.sessionChecked = true;
+        return of(null);
+      })
+    );
   }
 
   register(username: string, email: string, password: string, rePass: string) {

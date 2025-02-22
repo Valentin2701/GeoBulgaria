@@ -40,4 +40,8 @@ router.post("/logout", isAuth, (req, res) => {
   res.end();
 });
 
+router.get("/profile", (req, res) => {
+  res.json(req.user || null);
+})
+
 export { router };
