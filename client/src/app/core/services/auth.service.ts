@@ -5,6 +5,7 @@ import { catchError, of, tap } from 'rxjs';
 import { User } from '../../features/user/models/User';
 import { APIAuthResponse } from '../../features/user/models/APIAuthResponse';
 import { SnackbarService } from './snackbar.service';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   readonly isLoggedIn = computed(() => !!this.userSignal());
   private sessionChecked = false;
 
-  constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService) { }
+  constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService, private loaderService: LoaderService) { }
 
   get user() {
     return this.userSignal.asReadonly();
@@ -27,14 +28,17 @@ export class AuthService {
       return of(this.userSignal());
     }
 
+    this.loaderService.showLoader();
     return this.http.get<User | null>('/api/profile').pipe(
       tap((user) => {
         this.setUser(user);
         this.sessionChecked = true;
+        this.loaderService.hideLoader();
       }),
       catchError(() => {
         this.setUser(null);
         this.sessionChecked = true;
+        this.loaderService.hideLoader();
         return of(null);
       })
     );
