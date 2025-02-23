@@ -38,6 +38,7 @@ export class RegisterComponent {
     } else {
       this.snackbarService.showError('Моля попълнете всички полета правилно!');
     }
+    this.form.get("passGroup")?.reset();
   }
 }
 

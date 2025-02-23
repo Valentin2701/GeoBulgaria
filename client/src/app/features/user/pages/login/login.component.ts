@@ -30,5 +30,6 @@ export class LoginComponent {
     } else {
       this.snackbarSerivce.showError('Моля попълнете всички полета правилно!');
     }
+    this.form.get("password")?.reset();
   }
 }

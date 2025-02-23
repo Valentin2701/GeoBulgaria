@@ -19,7 +19,7 @@ export const login = async (userData) => {
 
   if (!user) throw new Error("Email or password incorrect!");
 
-  const isValid = bcrypt.compare(userData.password, user.password);
+  const isValid = await bcrypt.compare(userData.password, user.password);
   if (!isValid) throw new Error("Email or password incorrect!");
   
   const token = await jwt.sign(

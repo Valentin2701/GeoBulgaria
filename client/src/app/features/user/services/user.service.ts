@@ -16,9 +16,9 @@ export class UserService {
   login(email: string, password: string) {
     this.loaderService.showLoader();
     this.authService.login(email, password).subscribe((response: APIAuthResponse | null) => {
+      this.loaderService.hideLoader();
       if(response?.user == null) return throwError(() => response?.message);
       this.authService.setUser(response?.user ? response.user : null);
-      this.loaderService.hideLoader();
       this.snackbarService.showSuccess('Влязохте успешно');
       this.router.navigate(['/map']);
       return response;
@@ -28,9 +28,9 @@ export class UserService {
   register(username: string, email: string, password: string, rePass: string) {
     this.loaderService.showLoader();
     this.authService.register(username, email, password, rePass).subscribe((response: APIAuthResponse | null) => {
+      this.loaderService.hideLoader();
       if(response?.user == null) return throwError(() => response?.message);
       this.authService.setUser(response?.user ? response.user : null);
-      this.loaderService.hideLoader();
       this.snackbarService.showSuccess('Регистрирахте се успешно');
       this.router.navigate(['/map']);
       return response;
