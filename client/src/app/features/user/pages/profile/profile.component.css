@@ -1,13 +1,39 @@
-#profile-style {
-    border-radius: 15px;
-    margin: 0 auto;
-    width: 60%;
-    height: 445pt;
-    background-color: black;
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-#profile-picture {
-    width: 30%; 
-    margin-left: 20px; 
-    margin-right: 60px; 
-    float: left;
+
+.profile-panel {
+    background-color: black;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+    color: white;
+    width: 400px;
+}
+
+.profile-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-panel p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.logout-btn {
+    background-color: red;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
 }
