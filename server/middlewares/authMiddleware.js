@@ -14,6 +14,7 @@ export const authMiddleware = async (req, res, next) => {
     next();
   } catch (err) {
     res.clearCookie("auth");
+    return res.status(401).json({ message: "Не сте регистриран" });
   }
 };
 
