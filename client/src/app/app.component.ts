@@ -13,6 +13,7 @@ import { LoaderService } from './core/services/loader.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent  implements OnInit {
+  title = 'client';
   
   constructor(private authService: AuthService, private loaderService: LoaderService) { }
 
