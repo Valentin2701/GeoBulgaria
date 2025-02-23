@@ -10,6 +10,6 @@ export const routes: Routes = [
     {path: 'register', loadComponent: () => import('./features/user/pages/register/register.component').then(m => m.RegisterComponent), canActivate: [guestGuard]},
     {path: 'about', loadComponent: () => import('./features/home/pages/about/about.component').then(m => m.AboutComponent)},
     {path: 'contact', loadComponent: () => import('./features/home/pages/contact/contact.component').then(m => m.ContactComponent)},
-    {path: '', loadComponent: () => import('./features/home/pages/homepage/homepage.component').then(m => m.HomepageComponent)},
+    {path: '', loadComponent: () => import('./features/home/pages/homepage/homepage.component').then(m => m.HomepageComponent), canActivate: [guestGuard]},
     {path: '**', redirectTo: ''}
 ];

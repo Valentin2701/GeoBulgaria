@@ -1,6 +1,10 @@
 <header class="container1">
   <section id="left-sec">
-    <h1 style="font-size: 60px; margin: 0">ГеоБългария</h1>
+    @if(this.authService.isLoggedIn()){
+    <h1 style="font-size: 60px; margin: 0; cursor: pointer" routerLink="/map" >ГеоБългария</h1>
+    } @else {
+    <h1 style="font-size: 60px; margin: 0; cursor: pointer" routerLink="/" >ГеоБългария</h1>
+    }
   </section>
   <div class="container2">
     @if(this.authService.isLoggedIn()){

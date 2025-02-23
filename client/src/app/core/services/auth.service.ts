@@ -69,7 +69,7 @@ export class AuthService {
     return this.http.post('/api/logout', {}).subscribe(() => {
       this.userSignal.set(null);
       this.snackbarService.showSuccess('Излязохте успешно');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     });
   }
 }
