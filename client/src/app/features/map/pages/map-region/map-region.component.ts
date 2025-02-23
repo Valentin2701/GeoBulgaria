@@ -23,7 +23,7 @@ export class MapRegionComponent implements OnInit {
       if (this.regions.includes(region!)) {
         this.http.get(`/texts/${region}_info.txt`, { responseType: 'text' }).subscribe(
           (data) => {
-            this.text = data;
+            this.text = data.split('\n').join('\n\n');
           }
         );
         const unsafeUrl = `/${region}-map.html`;
