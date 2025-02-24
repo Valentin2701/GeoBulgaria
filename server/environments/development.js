@@ -1,5 +1,7 @@
+import { DB_password } from "../config.js";
+
 export const env = {
     apiURL: "http://localhost:5000",
     PORT: 5000,
-    DBURL: "mongodb://127.0.0.1:27017/GeoBulgaria"
+    DBURL: `mongodb+srv://valentinkirilov822:${DB_password}@geobulgaria.qwy8v.mongodb.net/?retryWrites=true&w=majority&appName=GeoBulgaria`
 }

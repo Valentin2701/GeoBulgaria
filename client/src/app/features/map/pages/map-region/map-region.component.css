@@ -13,3 +13,34 @@
     white-space: pre-line;
     word-wrap: break-word;
   }
+
+  .popover-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .popover-content {
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .popover-content img {
+    max-width: 200px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .btn {
+    margin: 20px;
+  }

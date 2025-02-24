@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-map-region',
-  imports: [RouterModule],
+  imports: [RouterModule, ],
   templateUrl: './map-region.component.html',
   styleUrl: './map-region.component.css'
 })
@@ -14,6 +14,24 @@ export class MapRegionComponent implements OnInit {
 
   safeRegionMapUrl!: SafeResourceUrl;
   text!: string;
+
+  showPopover = false;
+  imageSrc = '';
+  imageCaption = 'This is an image in the popover.';
+  private hoverTimeout: any;
+
+  onMouseEnter() {
+    // Set a delay before showing the popover
+    this.hoverTimeout = setTimeout(() => {
+      this.showPopover = true;
+    }, 500); // Delay in milliseconds
+  }
+
+  onMouseLeave() {
+    // Cancel the delay and hide the popover
+    clearTimeout(this.hoverTimeout);
+    this.showPopover = false;
+  }
 
   constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, private http: HttpClient) { }
 
@@ -36,6 +54,7 @@ export class MapRegionComponent implements OnInit {
           }
         );
 
+        this.imageSrc = `/${region}-photo.jpg`;
         // Set up the iframe URL safely
         const unsafeUrl = `/${region}-map.html`;
         this.safeRegionMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);

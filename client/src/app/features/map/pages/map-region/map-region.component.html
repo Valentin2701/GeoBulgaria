@@ -5,8 +5,17 @@
     <hr style="width: 50%" />
     <p #paragraph class="formatted-text">{{text}}</p>
   </div>
-  <div class="centered-flex" style="height: 400pt; width: 673pt">
-    <iframe
+  @if(showPopover){
+  <div 
+    class="popover-content" 
+  >
+    <img [src]="imageSrc" alt="Popover Image" />
+    <p>{{ imageCaption }}</p>
+  </div>
+  }
+  <div class="centered-flex" style="height: 400pt; width: 673pt"     (mouseenter)="onMouseEnter()" 
+  (mouseleave)="onMouseLeave()">
+      <iframe
       [attr.src]="safeRegionMapUrl"
       style="height: 100%; width: 100%; border: none"
     ></iframe>
