@@ -15,7 +15,7 @@ export const register = async (userData) => {
 };
 
 export const login = async (userData) => {
-  const user = await User.findOne({ email: userData.email }); //
+  const user = await User.findOne({ email: userData.email });
 
   if (!user) throw new Error("Email or password incorrect!");
 

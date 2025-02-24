@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  scores: {
+    type: Map,
+    default: {},
+  }
 });
 userSchema.pre("save", async function (){
     this.password = await bcrypt.hash(this.password, 12);
