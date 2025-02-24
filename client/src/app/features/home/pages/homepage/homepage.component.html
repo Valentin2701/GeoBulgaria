@@ -1,12 +1,37 @@
 
 
     <main id="guest-home">
-        <div class="slideshow-container">
-            <div class="welcome-panel">
-                <h1>Добре дошли в ГеоБългария!</h1>
-                <p>Открийте интерактивна карта и полезна информация за различни географски точки в България.</p>
-                <a routerLink="/register" class="btn">Регистрирайте се</a>
-                <a routerLink="/login" class="btn">Вход</a>
-            </div>
+        
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="text-panel">
+        <div class="slideshow">
+            <img src="шипка.jpg" class="slide active">
+            <img src="александър невски.jpg" class="slide">
+            <img src="рилски езера.png" class="slide">
+            <img src="белоградчик.jpg" class="slide">
         </div>
+        <div class="text-content">
+            <h1>Добре дошли в ГеоБългария!</h1>
+            <p>Открийте интерактивна карта и полезна информация за различни географски точки в България.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll(".slide");
+            let index = 0;
+        
+            function showNextSlide() {
+                slides[index].classList.remove("active");
+                index = (index + 1) % slides.length;
+                slides[index].classList.add("active");
+            }
+        
+            setInterval(showNextSlide, 4000);
+        });
+    </script>
     </main>
