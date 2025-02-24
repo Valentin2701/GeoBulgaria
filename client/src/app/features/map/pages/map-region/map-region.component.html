@@ -1,21 +1,20 @@
 <main>
-  <div class="info-panel">
-    <a routerLink="/map">Към картата</a>
-    <h2 style="text-align: center">Инфорамция за обекта</h2>
-    <hr style="width: 50%" />
-    <p #paragraph class="formatted-text">{{text}}</p>
+  <div class="iframe-container">
+    <iframe class="scaled-iframe" [attr.src]="safeRegionInfoUrl" style="height: 100%; width: 100%; border: none"></iframe>
   </div>
+
   @if(showPopover){
   <div 
     class="popover-content" 
   >
     <img [src]="imageSrc" alt="Popover Image" />
-    <p>{{ imageCaption }}</p>
+    <p>{{ region }}</p>
   </div>
   }
-  <div class="centered-flex" style="height: 400pt; width: 673pt"     (mouseenter)="onMouseEnter()" 
+  <div class="centered-flex" style="height: 400pt; width: 450pt"     (mouseenter)="onMouseEnter()" 
   (mouseleave)="onMouseLeave()">
       <iframe
+      class="region-map"
       [attr.src]="safeRegionMapUrl"
       style="height: 100%; width: 100%; border: none"
     ></iframe>

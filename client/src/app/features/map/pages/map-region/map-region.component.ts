@@ -13,7 +13,9 @@ export class MapRegionComponent implements OnInit {
   regions = ["blagoevgrad", "burgas", "dobrich", "gabrovo", "haskovo", "kardzhali", "kyustendil", "lovech", "montana", "pazardzhik", "pernik", "pleven", "plovdiv", "yambol", "razgrad", "ruse", "shumen", "silistra", "sliven", "smolyan", "sofia-region", "sofia-grad", "stara-zagora", "targovishte", "varna", "veliko-tarnovo", "vidin", "vraca"]
 
   safeRegionMapUrl!: SafeResourceUrl;
+  safeRegionInfoUrl!: SafeResourceUrl;
   text!: string;
+  region: string | null = null;
 
   showPopover = false;
   imageSrc = '';
@@ -39,6 +41,7 @@ export class MapRegionComponent implements OnInit {
     // Retrieve the region from the route parameters
     this.route.paramMap.subscribe((params) => {
       const region = params.get('region');
+      this.region = region;
 
       // Check if the region is valid
       if (region && this.regions.includes(region)) {
@@ -54,10 +57,12 @@ export class MapRegionComponent implements OnInit {
           }
         );
 
-        this.imageSrc = `/${region}-photo.jpg`;
+        this.imageSrc = `/${region}-photo.png`;
         // Set up the iframe URL safely
+        const unsafeInfoUrl = `/info-panels/${region}-info.html`
         const unsafeUrl = `/${region}-map.html`;
         this.safeRegionMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
+        this.safeRegionInfoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeInfoUrl);
       } else {
         // If region is invalid, redirect to the map page
         this.router.navigate(['/map']);

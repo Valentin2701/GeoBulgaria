@@ -1,0 +1,43 @@
+import { Test } from "../models/testModel.js";
+import { User } from "../models/User.js";
+
+export const getTests = () => Test.find({}, "title");
+
+export const getTestById = (id) =>
+  Test.findById(id, { "questions.correctAnswer": 0 });
+
+export const submitTest = (testId, answers) => {
+  return Test.findById(testId).then((test) => {
+    let score = 0;
+    test.questions.forEach((question, index) => {
+      if (question.correctAnswer === answers[index]) {
+        score += question.points;
+      }
+    });
+    return score;
+  });
+};
+
+export const submitQuestion = (testId, question, answer) =>
+  Test.findById(testId).then((test) => {
+    return {correct: test.questions[question].correctAnswer === answer, explanation: test.questions[question].explanation};
+  });
+
+  export const setUserScore = async (testId, userId, newScore) => {
+    await User.updateOne(
+      { _id: userId },
+      [
+        {
+          $set: {
+            [`scores.${testId}`]: {
+              $cond: {
+                if: { $gt: [newScore, { $ifNull: [`$scores.${testId}`, -Infinity] }] },
+                then: newScore,
+                else: `$scores.${testId}`,
+              },
+            },
+          },
+        },
+      ]
+    );
+  };
