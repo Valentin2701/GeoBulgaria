@@ -3,5 +3,6 @@ export interface User {
     username: String;
     email: String;
     password: String;
+    scores: Map<String, Number>;
     __v: Number;
 }

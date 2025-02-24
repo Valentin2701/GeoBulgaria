@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0; /* Soft gray background */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: #fff; /* White background for content */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.nav-list {
+    position: sticky;
+    top: 10px;
+    background: #f7f7f7; /* Light gray background */
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    height: 100vh;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.nav-list h5 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.nav-list a {
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    color: #5a6e7c; /* Light blue-gray color */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-list a:hover {
+    background-color: #5a6e7c; /* Light blue-gray on hover */
+    color: #fff;
+}
+
+.book-container {
+    flex: 3;
+    padding: 30px;
+    overflow-y: auto;
+    height: 100vh;
+    background-color: #fafafa; /* Light gray background for the book content */
+}
+
+.book-header {
+    margin-bottom: 20px;
+}
+
+.book-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.book-header p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #666; /* Darker gray for text */
+}
+
+.chapter {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chapter h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #4a6a82; /* Slightly darker blue for chapter titles */
+}
+
+.chapter p {
+    text-indent: 30px;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .nav-list {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .book-container {
+        height: auto;
+    }
+}
