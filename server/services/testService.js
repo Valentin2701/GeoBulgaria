@@ -1,4 +1,4 @@
-import { Test } from "../models/testModel.js";
+import { Test } from "../models/Test.js";
 import { User } from "../models/User.js";
 
 export const getTests = () => Test.find({}, "title description");

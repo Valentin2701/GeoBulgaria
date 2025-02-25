@@ -1,16 +1,16 @@
 import express from "express";
 import * as testService from "../services/testService.js";
-import { isAuth } from "../middlewares/authMiddleware";
+import { isAuth } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/", isAuth, async (req, res) => {
-  const tests = await testService.getAll();
+  const tests = await testService.getTests();
   res.json(tests);
 });
 
 router.get("/:testId", isAuth, async (req, res) => {
-  const test = await testService.getOne(req.params.testId);
+  const test = await testService.getTestById(req.params.testId);
   res.json(test);
 });
 
