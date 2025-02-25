@@ -21,9 +21,9 @@
   
   .popover-content {
     position: absolute;
-    top: 30px;
-    left: 70%;
-    transform: translateX(-50%);
+    top: 300px;
+    left: 50%;
+    transform: translateX(-20%);
     padding: 8px 12px;
     background-color: #333;
     color: #fff;
