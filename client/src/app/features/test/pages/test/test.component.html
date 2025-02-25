@@ -1,1 +1,14 @@
-<p>test works!</p>
+
+  <main class="confirm-container">
+    <section class="confirm-box">
+      <h2>Готови ли сте да започнете теста?</h2>
+      <p>Тема: {{ test?.title }}</p>
+      <p>Описание: {{ test?.description }}</p>
+      <p>Брой въпроси: {{ test?.questions?.length }}</p>
+      <div class="confirm-actions">
+        <button class="btn btn-primary" routerLink="/test/{{ test?._id }}/0">Започни теста</button>
+        <button class="btn btn-secondary" routerLink="/tests">Назад</button>
+      </div>
+    </section>
+  </main>
+  

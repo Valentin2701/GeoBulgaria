@@ -1,1 +1,18 @@
-<p>tests works!</p>
+<main class="container">
+    <div class="test-card" *ngFor="let test of tests">
+        <h2>{{ test.title }}</h2>
+        <p>{{ test.description }}</p>
+        <button class="btn" [routerLink]="'/tests/' + test._id">View Test</button>
+      </div>
+    <div class="test-card">
+      <h2>Области в България</h2>
+      <p>Тест за областите в България</p>
+      <button class="btn">Преглед на теста</button>
+    </div>
+    <div class="test-card">
+      <h2>Полезни изкопаеми</h2>
+      <p>Тест за полезните изкопаеми на България</p>
+      <button class="btn">Преглед на теста</button>
+    </div>
+    <!-- Add more test cards as needed -->
+  </main>

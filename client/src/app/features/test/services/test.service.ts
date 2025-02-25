@@ -23,14 +23,6 @@ export class TestService {
     return this.http.get<Test>(`/api/tests/${this.testId()}`);
   }
 
-  getQuestion(question: Number){
-    return this.http.get<Question>(`/api/tests/${this.testId()}/${question}`);
-  }
-
-  submitQuestion(question: Number, answer: String){
-    return this.http.post<Answer>(`/api/tests/${this.testId()}/${question}`, {answer});
-  }
-
   submitTest(){
     return this.http.post<Number>(`/api/tests/${this.testId()}`, this.answers);
   }

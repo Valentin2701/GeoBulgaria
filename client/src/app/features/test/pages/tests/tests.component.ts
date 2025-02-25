@@ -3,15 +3,17 @@ import { Test } from '../../models/Test';
 import { TestService } from '../../services/test.service';
 import { LoaderService } from '../../../../core/services/loader.service';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
+import { RouterModule } from '@angular/router';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-tests',
-  imports: [],
+  imports: [RouterModule, CommonModule, NgFor],
   templateUrl: './tests.component.html',
   styleUrl: './tests.component.css'
 })
 export class TestsComponent implements OnInit{
-  tests: Test[] = [];
+  public tests: Test[] = [];
 
   constructor(private testService: TestService, private loaderService: LoaderService, private snackbarService: SnackbarService){}
 

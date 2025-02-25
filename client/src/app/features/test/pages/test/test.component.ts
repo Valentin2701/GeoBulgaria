@@ -3,11 +3,11 @@ import { Test } from '../../models/Test';
 import { TestService } from '../../services/test.service';
 import { LoaderService } from '../../../../core/services/loader.service';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-test',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
