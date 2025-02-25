@@ -9,10 +9,21 @@ router.get("/tests", isAuth, async (req, res) => {
   res.json(tests);
 });
 
-router.get("/tests/:id", isAuth, async (req, res) => {
-  const test = await testService.getOne(req.params.id);
+router.get("/tests/:testId", isAuth, async (req, res) => {
+  const test = await testService.getOne(req.params.testId);
   res.json(test);
 });
+
+router.get("/tests/:testId/:question", isAuth, async (req, res) => {
+    const { testId, question } = req.params;
+    try{
+        const result = await testService.getQuestion(testId, question);
+
+        res.json(result[0].question | null);
+    } catch(err){
+        next(err);
+    }
+})
 
 router.post("/tests/:testId", isAuth, async (req, res, next) => {
   const { testId } = req.params;
