@@ -1,7 +1,7 @@
 import { Test } from "../models/testModel.js";
 import { User } from "../models/User.js";
 
-export const getTests = () => Test.find({}, "title");
+export const getTests = () => Test.find({}, "title description");
 
 export const getTestById = (id) =>
   Test.findById(id, { "questions.correctAnswer": 0 });

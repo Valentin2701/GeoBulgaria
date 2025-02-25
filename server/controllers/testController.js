@@ -4,28 +4,28 @@ import { isAuth } from "../middlewares/authMiddleware";
 
 const router = express.Router();
 
-router.get("/tests", isAuth, async (req, res) => {
+router.get("/", isAuth, async (req, res) => {
   const tests = await testService.getAll();
   res.json(tests);
 });
 
-router.get("/tests/:testId", isAuth, async (req, res) => {
+router.get("/:testId", isAuth, async (req, res) => {
   const test = await testService.getOne(req.params.testId);
   res.json(test);
 });
 
-router.get("/tests/:testId/:question", isAuth, async (req, res) => {
-    const { testId, question } = req.params;
-    try{
-        const result = await testService.getQuestion(testId, question);
+router.get("/:testId/:question", isAuth, async (req, res) => {
+  const { testId, question } = req.params;
+  try {
+    const result = await testService.getQuestion(testId, question);
 
-        res.json(result[0].question | null);
-    } catch(err){
-        next(err);
-    }
-})
+    res.json(result[0].question | null);
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.post("/tests/:testId", isAuth, async (req, res, next) => {
+router.post("/:testId", isAuth, async (req, res, next) => {
   const { testId } = req.params;
   const userAnswers = req.body;
   try {
@@ -37,13 +37,19 @@ router.post("/tests/:testId", isAuth, async (req, res, next) => {
   }
 });
 
-router.post("/tests/:testId/:question", isAuth, async (req, res, next) => {
+router.post("/:testId/:question", isAuth, async (req, res, next) => {
   const { testId, question } = req.params;
   const userAnswer = req.body.answer;
   try {
-    const result = await testService.submitQuestion(testId, question, userAnswer);
+    const result = await testService.submitQuestion(
+      testId,
+      question,
+      userAnswer
+    );
     res.json(result);
   } catch (err) {
     return next(err);
   }
 });
+
+export { router };
