@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-map-region',
-  imports: [RouterModule, ],
+  imports: [RouterModule],
   templateUrl: './map-region.component.html',
   styleUrl: './map-region.component.css'
 })

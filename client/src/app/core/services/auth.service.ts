@@ -6,6 +6,8 @@ import { User } from '../../features/user/models/User';
 import { APIAuthResponse } from '../../features/user/models/APIAuthResponse';
 import { SnackbarService } from './snackbar.service';
 import { LoaderService } from './loader.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AuthService {
   readonly isLoggedIn = computed(() => !!this.userSignal());
   private sessionChecked = false;
 
-  constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService, private loaderService: LoaderService) { }
+  constructor(private http: HttpClient, private router: Router, private snackbarService: SnackbarService, private loaderService: LoaderService, private dialog: MatDialog) { }
 
   get user() {
     return this.userSignal.asReadonly();
@@ -70,10 +72,19 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/logout', {}).subscribe(() => {
-      this.userSignal.set(null);
-      this.snackbarService.showSuccess('Излязохте успешно');
-      this.router.navigate(['/']);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: { message: 'Сигурни ли сте че искате да излезете от профила си?' }
     });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+         this.http.post('/api/logout', {}).subscribe(() => {
+          this.userSignal.set(null);
+          this.snackbarService.showSuccess('Излязохте успешно');
+          this.router.navigate(['/']);
+        });
+      }
+    })
   }
 }

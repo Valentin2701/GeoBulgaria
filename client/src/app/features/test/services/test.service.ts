@@ -11,7 +11,7 @@ import { Question } from '../models/Question';
 export class TestService {
 
   testId: WritableSignal<String> = signal('');
-  answers: String[] = []; 
+  answers: WritableSignal<String[]> = signal([]); 
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +24,6 @@ export class TestService {
   }
 
   submitTest(){
-    return this.http.post<Number>(`/api/tests/${this.testId()}`, this.answers);
+    return this.http.post<Number>(`/api/tests/${this.testId()}`, this.answers());
   }
 }

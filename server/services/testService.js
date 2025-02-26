@@ -16,16 +16,15 @@ export const getQuestion = async (testId, question) =>
     },
   ]);
 
-export const submitTest = (testId, answers) => {
-  return Test.findById(testId).then((test) => {
-    let score = 0;
-    test.questions.forEach((question, index) => {
-      if (question.correctAnswer === answers[index]) {
-        score += question.points;
-      }
-    });
-    return score;
+export const submitTest = async (testId, answers) => {
+  const test = await Test.findById(testId);
+  let score = 0;
+  test.questions.forEach((question, index) => {
+    if (question.correctAnswer === answers[index]) {
+      score += question.points;
+    }
   });
+  return score;
 };
 
 export const submitQuestion = (testId, question, answer) =>
@@ -36,8 +35,8 @@ export const submitQuestion = (testId, question, answer) =>
     };
   });
 
-export const setUserScore = async (testId, userId, newScore) => {
-  await User.updateOne({ _id: userId }, [
+export const setUserScore = async (testId, userId, newScore) =>
+  User.updateOne({ _id: userId }, [
     {
       $set: {
         [`scores.${testId}`]: {
@@ -52,4 +51,3 @@ export const setUserScore = async (testId, userId, newScore) => {
       },
     },
   ]);
-};

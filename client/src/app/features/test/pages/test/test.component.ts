@@ -31,7 +31,7 @@ export class TestComponent implements OnInit {
         },
         (error) => {
           this.loaderService.hideLoader();
-          this.snackbarService.showError("Couldn't fetch test");
+          this.snackbarService.showError("Неуспешно извличане на теста");
         }
       );
     })

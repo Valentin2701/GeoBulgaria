@@ -1,0 +1,67 @@
+<main class="question-container">
+  <section class="question-box">
+    <div style="width: 300px; margin: 20px">
+      <mat-progress-bar mode="determinate" [value]="progressValue">
+      </mat-progress-bar>
+      <mat-radio-group [(ngModel)]="answer">
+        <label for="options" class="question"
+          >{{ currentQuestionIndex() + 1 }}.
+          {{test()?.questions?.[currentQuestionIndex()]?.text}}</label
+        >
+        @for(option of test()?.questions?.[currentQuestionIndex()]?.options;
+        track option){
+        <mat-radio-button [value]="option">
+          {{ option }}
+        </mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+    @if(answered){
+    <div class="correct">
+      {{ correct ? "Верен отговор" : "Грешен отговор" }}
+    </div>
+    @if(!correct){
+    <div class="correct-ans">
+      <p>
+        Правилен отговор:
+        {{test()?.questions?.[currentQuestionIndex()]?.correctAnswer}}
+      </p>
+    </div>
+    }
+    <div class="explanation">
+      {{ explanation }}
+    </div>
+    }
+    <div class="navigation-buttons">
+      @if(currentQuestionIndex() > 0){
+      <button
+        class="btn btn-primary"
+        routerLink="/tests/{{ test()?._id }}/{{ currentQuestionIndex() }}"
+        (click)="resetFields()"
+      >
+        Previous
+      </button>
+      }
+      <button
+        class="btn btn-success"
+        (click)="submitQuestion()"
+        [disabled]="answered"
+      >
+        Submit Question
+      </button>
+      @if(currentQuestionIndex() === (test()?.questions?.length ?? 0) - 1){
+      <button class="btn btn-success" (click)="submitTest()">
+        Submit Test
+      </button>
+      } @if(currentQuestionIndex() < (test()?.questions?.length ?? 3) - 1){
+      <button
+        class="btn btn-primary"
+        routerLink="/tests/{{ test()?._id }}/{{ currentQuestionIndex() + 2 }}"
+        (click)="resetFields()"
+      >
+        Next
+      </button>
+      }
+    </div>
+  </section>
+</main>

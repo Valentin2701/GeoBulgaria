@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Прозорец за Потвърждение</h2>
+<mat-dialog-content>
+  <p>{{ data.message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Отказ</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()">Напред</button>
+</mat-dialog-actions>

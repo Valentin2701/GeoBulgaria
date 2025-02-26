@@ -13,18 +13,12 @@
     white-space: pre-line;
     word-wrap: break-word;
   }
-
-  .popover-container {
-    position: relative;
-    display: inline-block;
-  }
   
-  .popover-content {
-    position: absolute;
-    top: 300px;
-    left: 50%;
-    transform: translateX(-20%);
-    padding: 8px 12px;
+  .poopover-content {
+    position: fixed; /* Fixed positioning for viewport placement */
+    top: 100px; /* Space from the top of the viewport */
+    right: 10%; /* Space from the right of the viewport */
+    padding: 8px 120px;
     background-color: #333;
     color: #fff;
     border-radius: 4px;
@@ -32,13 +26,13 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     text-align: center;
-}
-
+    transform: scale(69);
+  }
   
-  .popover-content img {
-    max-width: 200px;
+  .poopover-content img {
+    max-width: 1000px;
     border-radius: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 80px;
   }
   
   .btn {

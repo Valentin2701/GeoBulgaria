@@ -3,20 +3,19 @@
     <iframe class="scaled-iframe" [attr.src]="safeRegionInfoUrl" style="height: 100%; width: 100%; border: none"></iframe>
   </div>
 
-  @if(showPopover){
-  <div 
-    class="popover-content" 
-  >
-    <img [src]="imageSrc" alt="Popover Image" />
-    <p>{{ region }}</p>
-  </div>
-  }
   <div class="centered-flex" style="height: 400pt; width: 450pt"     (mouseenter)="onMouseEnter()" 
   (mouseleave)="onMouseLeave()">
       <iframe
       class="region-map"
       [attr.src]="safeRegionMapUrl"
       style="height: 100%; width: 100%; border: none"
-    ></iframe>
+    >@if(showPopover){
+      <div 
+        class="poopover-content" 
+      >
+        <img [src]="imageSrc" alt="Popover Image" />
+        <p>{{ region }}</p>
+      </div>
+      }</iframe>
   </div>
 </main>

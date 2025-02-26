@@ -1,0 +1,44 @@
+.question-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .question-box {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .answer-input {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .navigation-buttons {
+    margin-top: 2rem;
+  }
+  
+  .navigation-buttons .btn {
+    margin: 0 0.5rem;
+  }
+  
+  mat-radio-button {
+    display: block; /* Each radio button on a new line */
+    margin-bottom: 10px; /* Optional: adds space between the buttons */
+    text-align: left; /* Align the text to the left inside each radio button */
+  }
+  
+  mat-radio-group {
+    display: block; /* Ensure the radio group is a block-level element */
+  }
+
+  .question{
+    margin-bottom: 30px;
+  }
