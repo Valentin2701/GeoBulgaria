@@ -21,3 +21,7 @@ describe('MapRegionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+goBack() {
+  window.history.back();
+}
