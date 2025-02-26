@@ -45,7 +45,7 @@
     padding-bottom: 40%; /* 16:9 aspect ratio */
     position: relative;
   }
-
+  
   .scaled-iframe {
     position: absolute;
     width: 100%;
@@ -53,7 +53,7 @@
     border-radius: 30px;
     margin-top: -90px;
   }
-
+  
   .back-button {
     background-color: #007bff;
     color: white;
@@ -62,9 +62,12 @@
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.back-button:hover {
+    position: absolute;
+    top: 90px; /* Adjust to position above the iframe */
+    left: 360px; /* Adjust for horizontal placement */
+    z-index: 10; /* Ensure it appears above the iframe */
+  }
+  
+  .back-button:hover {
     background-color: #0056b3;
-}
+  }
