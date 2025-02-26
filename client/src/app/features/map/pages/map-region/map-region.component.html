@@ -1,5 +1,5 @@
 <main>
-  <button class="back-button" (click)="goBack()">&laquo; Към картата</button>
+  <button class="back-button" routerLink="/map">&laquo; Към картата</button>
   
   <div class="iframe-container">
     <iframe class="scaled-iframe" [attr.src]="safeRegionInfoUrl" style="height: 100%; width: 100%; border: none"></iframe>

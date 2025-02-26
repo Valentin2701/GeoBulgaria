@@ -10,7 +10,7 @@
         >
         @for(option of test()?.questions?.[currentQuestionIndex()]?.options;
         track option){
-        <mat-radio-button [value]="option">
+        <mat-radio-button [value]="option" [disabled]="answered">
           {{ option }}
         </mat-radio-button>
         }
@@ -22,10 +22,7 @@
     </div>
     @if(!correct){
     <div class="correct-ans">
-      <p>
-        Правилен отговор:
-        {{test()?.questions?.[currentQuestionIndex()]?.correctAnswer}}
-      </p>
+        Правилен отговор: {{test()?.questions?.[currentQuestionIndex()]?.correctAnswer}}
     </div>
     }
     <div class="explanation">

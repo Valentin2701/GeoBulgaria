@@ -31,7 +31,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   answered: boolean = false;
   answeredCount = 0;
   progressValue = 0;
-  submited = false;
+  submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private loaderService: LoaderService, private snackbarService: SnackbarService, private questionService: QuestionService, private dialog: MatDialog) {
   }
@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       if (confirmed) {
         this.loaderService.showLoader();
         this.testService.submitTest().subscribe((score) => {
-          this.submited = true;
+          this.submitted = true;
           this.loaderService.hideLoader();
           this.snackbarService.showSuccess(`Тестът беше предаден! Резултат: ${score}/100`);
           this.router.navigate(['/tests']);
@@ -85,6 +85,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.explanation = '';
     this.correct = null;
     this.answered = false;
+    this.answeredCount = 0;
+    this.progressValue = 0;
   }
 
   ngOnInit(): void {
@@ -96,17 +98,16 @@ export class QuestionComponent implements OnInit, OnDestroy {
         this.test.set(test);
         if (this.testService.answers()[params["question"] - 1]) {
           this.answer = this.testService.answers()[params["question"] - 1];
-          this.correct = test?.questions?.[params["question"] - 1].correctAnswer == this.answer;
+          this.correct = test?.questions?.[params["question"] - 1].correctAnswer as string == this.answer;
           this.explanation = test?.questions?.[params["question"] - 1]?.explanation as String;
           this.answered = true;
         }
       })
-
     });
   }
 
   ngOnDestroy(): void {
-    if (!this.submited) {
+    if (!this.submitted) {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '400px',
         data: { message: 'Сигурни ли сте че искате да излезете от теста?' }
@@ -121,6 +122,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
           this.router.navigate([`/tests/${this.testService.testId()}/${this.currentQuestionIndex() + 1}`]);
         }
       });
+    }
+    else {
+      this.resetFields();
+      this.submitted = false;
     }
   }
 }

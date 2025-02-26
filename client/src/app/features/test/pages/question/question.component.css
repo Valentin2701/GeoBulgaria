@@ -42,3 +42,20 @@
   .question{
     margin-bottom: 30px;
   }
+
+  /* Override the disabled style */
+.mat-radio-disabled .mat-radio-container {
+    opacity: 1; /* Remove the dimmed effect */
+    cursor: pointer; /* Keep the pointer cursor for consistency */
+  }
+  
+  /* Prevent label text from graying out */
+  .mat-radio-disabled .mat-radio-label {
+    color: inherit; /* Use the same color as enabled state */
+  }
+  
+  /* Optional: Customize the cursor on hover */
+  .mat-radio-disabled.mat-radio-checked .mat-radio-inner-circle {
+    background-color: inherit; /* Ensure the circle color remains consistent */
+  }
+  

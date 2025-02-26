@@ -3,8 +3,7 @@ import { User } from "../models/User.js";
 
 export const getTests = () => Test.find({}, "title description");
 
-export const getTestById = (id) =>
-  Test.findById(id, { "questions.correctAnswer": 0 });
+export const getTestById = (id) => Test.findById(id);
 
 export const getQuestion = async (testId, question) =>
   Test.aggregate([
