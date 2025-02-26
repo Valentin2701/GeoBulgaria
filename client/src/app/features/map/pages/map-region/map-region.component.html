@@ -14,12 +14,12 @@
     ></iframe>
   </div>
 
-  @if(showPopover){
+  @if(showPopover && region !== null){
     <div 
       class="poopover-content" 
     >
       <img [src]="imageSrc" alt="Popover Image" />
-      <p>{{ region }}</p>
+      <p>{{ regions[region] }}</p>
     </div>
     }
 </main>

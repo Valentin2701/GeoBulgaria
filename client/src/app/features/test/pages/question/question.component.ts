@@ -85,8 +85,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.explanation = '';
     this.correct = null;
     this.answered = false;
-    this.answeredCount = 0;
-    this.progressValue = 0;
   }
 
   ngOnInit(): void {

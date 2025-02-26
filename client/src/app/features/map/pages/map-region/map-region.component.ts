@@ -10,16 +10,45 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   styleUrl: './map-region.component.css'
 })
 export class MapRegionComponent implements OnInit {
-  regions = ["blagoevgrad", "burgas", "dobrich", "gabrovo", "haskovo", "kardzhali", "kyustendil", "lovech", "montana", "pazardzhik", "pernik", "pleven", "plovdiv", "yambol", "razgrad", "ruse", "shumen", "silistra", "sliven", "smolyan", "sofia-region", "sofia-grad", "stara-zagora", "targovishte", "varna", "veliko-tarnovo", "vidin", "vraca"]
+    regions = {
+    "blagoevgrad": "Благоевград",
+    "burgas": "Бургас",
+    "dobrich": "Добрич",
+    "gabrovo": "Габрово",
+    "haskovo": "Хасково",
+    "kardzhali": "Кърджали",
+    "kyustendil": "Кюстендил",
+    "lovech": "Ловеч",
+    "montana": "Монтана",
+    "pazardzhik": "Пазарджик",
+    "pernik": "Перник",
+    "pleven": "Плевен",
+    "plovdiv": "Пловдив",
+    "yambol": "Ямбол",
+    "razgrad": "Разград",
+    "ruse": "Русе",
+    "shumen": "Шумен",
+    "silistra": "Силистра",
+    "sliven": "Сливен",
+    "smolyan": "Смолян",
+    "sofia-region": "Софийска област",
+    "sofia-grad": "София",
+    "stara-zagora": "Стара Загора",
+    "targovishte": "Търговище",
+    "varna": "Варна",
+    "veliko-tarnovo": "Велико Търново",
+    "vidin": "Видин",
+    "vraca": "Враца"
+}
 
   safeRegionMapUrl!: SafeResourceUrl;
   safeRegionInfoUrl!: SafeResourceUrl;
   text!: string;
-  region: string | null = null;
+  region: keyof typeof this.regions | null = null;
 
   showPopover = false;
   imageSrc = '';
-  imageCaption = 'This is an image in the popover.';
+  imageCaption = '';
   private hoverTimeout: any;
 
   onMouseEnter() {
@@ -38,22 +67,13 @@ export class MapRegionComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const region = params.get('region');
-      this.region = region;
+      this.region = region as keyof typeof this.regions;
 
-      if (region && this.regions.includes(region)) {
-        this.http.get(`/texts/${region}_info.txt`, { responseType: 'text' }).subscribe(
-          (data) => {
-            this.text = data.split('\n').join('\n\n');
-          },
-          (error) => {
-            console.error('Error loading region info:', error);
-            this.router.navigate(['/map']);
-          }
-        );
+      if (region && Object.keys(this.regions).includes(region)) {
 
-        this.imageSrc = `/${region}-photo.png`;
+        this.imageSrc = `/popup-photos/${region}-photo.png`;
         const unsafeInfoUrl = `/info-panels/${region}-info.html`
-        const unsafeUrl = `/${region}-map.html`;
+        const unsafeUrl = `/regions/${region}-map.html`;
         this.safeRegionMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
         this.safeRegionInfoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeInfoUrl);
       } else {
