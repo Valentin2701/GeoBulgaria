@@ -13,4 +13,13 @@
       style="height: 100%; width: 100%; border: none"
     ></iframe>
   </div>
+
+  @if(showPopover){
+    <div 
+      class="poopover-content" 
+    >
+      <img [src]="imageSrc" alt="Popover Image" />
+      <p>{{ region }}</p>
+    </div>
+    }
 </main>
