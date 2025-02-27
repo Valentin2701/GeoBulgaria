@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", isAuth, async (req, res) => {
   const tests = await testService.getTests();
-  res.json(tests);
+  res.status(200).json(tests);
 });
 router.get("/userTests", isAuth, async (req, res, next) => {
   try {
@@ -36,7 +36,7 @@ router.get("/userTests", isAuth, async (req, res, next) => {
       dict[test.title] = scores[test._id.toString()]; // Ensure _id is converted to string
     });
 
-    res.json(dict);
+    res.status(200).json(dict);
   } catch (err) {
     next(err);
   }
@@ -44,7 +44,7 @@ router.get("/userTests", isAuth, async (req, res, next) => {
 
 router.get("/:testId", isAuth, async (req, res) => {
   const test = await testService.getTestById(req.params.testId);
-  res.json(test);
+  res.status(200).json(test);
 });
 
 router.get("/:testId/:question", isAuth, async (req, res) => {
@@ -52,7 +52,7 @@ router.get("/:testId/:question", isAuth, async (req, res) => {
   try {
     const result = await testService.getQuestion(testId, question);
 
-    res.json(result[0].question | null);
+    res.status(200).json(result[0].question | null);
   } catch (err) {
     next(err);
   }
@@ -64,7 +64,7 @@ router.post("/:testId", isAuth, async (req, res, next) => {
   try {
     const result = await testService.submitTest(testId, userAnswers);
     await testService.setUserScore(testId, req.user._id, result);
-    res.json(result);
+    res.status(200).json(result);
   } catch (err) {
     return next(err);
   }
@@ -79,7 +79,7 @@ router.post("/:testId/:question", isAuth, async (req, res, next) => {
       question,
       userAnswer
     );
-    res.json(result);
+    res.status(200).json(result);
   } catch (err) {
     return next(err);
   }

@@ -17,7 +17,7 @@ router.post("/register", async (req, res, next) => {
     });
 
     res.cookie("auth", result.token, {sameSite: "strict"});
-    res.json({ user: result.user, message: "Registered successfully!" });
+    res.status(200).json({ user: result.user, message: "Registered successfully!" });
   } catch (err) {
     return next(err);
   }
@@ -29,7 +29,7 @@ router.post("/login", async (req, res, next) => {
     const result = await authService.login(userData);
 
     res.cookie("auth", result.token, {sameSite: "strict"});
-    res.json({ user: result.user, message: "Logged in succesfully" });
+    res.status(200).json({ user: result.user, message: "Logged in succesfully" });
   } catch (err) {
     return next(err);
   }
@@ -44,7 +44,7 @@ router.get("/profile", async (req, res) => {
   if (!req.user) res.json(null);
   else {
     const user = await authService.getUser(req.user._id);
-    res.json(user);
+    res.status(200).json(user);
   }
 });
 
