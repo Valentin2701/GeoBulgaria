@@ -16,7 +16,7 @@ router.post("/register", async (req, res, next) => {
       password: userData.password,
     });
 
-    res.cookie("auth", result.token);
+    res.cookie("auth", result.token, {sameSite: "strict"});
     res.json({ user: result.user, message: "Registered successfully!" });
   } catch (err) {
     return next(err);
@@ -28,7 +28,7 @@ router.post("/login", async (req, res, next) => {
   try {
     const result = await authService.login(userData);
 
-    res.cookie("auth", result.token);
+    res.cookie("auth", result.token, {sameSite: "strict"});
     res.json({ user: result.user, message: "Logged in succesfully" });
   } catch (err) {
     return next(err);
