@@ -5,6 +5,8 @@ export const getTests = () => Test.find({}, "title description");
 
 export const getTestById = (id) => Test.findById(id);
 
+export const getTestsByIds = (ids) => Test.find({ _id: { $in: ids } });
+
 export const getQuestion = async (testId, question) =>
   Test.aggregate([
     { $match: { _id: mongoose.Types.ObjectId(testId) } }, // Match the test by its ID

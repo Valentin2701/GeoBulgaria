@@ -36,7 +36,7 @@
         routerLink="/tests/{{ test()?._id }}/{{ currentQuestionIndex() }}"
         (click)="resetFields()"
       >
-        Previous
+        Назад
       </button>
       }
       <button
@@ -44,11 +44,11 @@
         (click)="submitQuestion()"
         [disabled]="answered"
       >
-        Submit Question
+        Провери
       </button>
       @if(currentQuestionIndex() === (test()?.questions?.length ?? 0) - 1){
       <button class="btn btn-success" (click)="submitTest()">
-        Submit Test
+        Предай тест
       </button>
       } @if(currentQuestionIndex() < (test()?.questions?.length ?? 3) - 1){
       <button
@@ -56,7 +56,7 @@
         routerLink="/tests/{{ test()?._id }}/{{ currentQuestionIndex() + 2 }}"
         (click)="resetFields()"
       >
-        Next
+        Напред
       </button>
       }
     </div>

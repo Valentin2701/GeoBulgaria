@@ -6,5 +6,23 @@
       <p><strong>Имейл:</strong> {{user?.email}}</p>
       <br>
       <button class="logout-btn" (click)="authService.logout()">Излез</button>
+
+      <div class="tests-section">
+        <h3>Тестове и резултати</h3>
+        @if(isLoading){
+          <div class="loader-container">
+            <div class="spinner"></div>
+            <p>Зареждане на тестове...</p>
+          </div>
+        } @else{
+        <ul>
+          @for(test of tests; track test){
+          <li>
+            <strong>{{ test }}:</strong> {{ scores[test] }} / 100
+          </li>
+        }
+        </ul>
+      }
+      </div>
   </div>
 </div>

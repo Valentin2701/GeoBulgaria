@@ -113,6 +113,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
       dialogRef.afterClosed().subscribe((confirmed: boolean) => {
         if (confirmed) {
+          this.resetFields();
           this.testService.testId.set("");
           this.testService.answers.set([]);
         }

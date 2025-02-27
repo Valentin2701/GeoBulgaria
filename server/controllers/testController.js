@@ -1,5 +1,7 @@
 import express from "express";
+import mongoose from "mongoose";
 import * as testService from "../services/testService.js";
+import * as authService from "../services/authService.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -7,6 +9,37 @@ const router = express.Router();
 router.get("/", isAuth, async (req, res) => {
   const tests = await testService.getTests();
   res.json(tests);
+});
+router.get("/userTests", isAuth, async (req, res, next) => {
+  try {
+    const user = await authService.getUser(req.user._id).lean();
+
+    if (!user.scores || typeof user.scores !== "object") {
+      return res.status(400).json({ message: "Invalid scores data." });
+    }
+
+    const { scores } = user;
+
+    // Convert keys to ObjectIds
+    const testIds = Object.keys(scores).map((id) => {
+      if (!mongoose.isValidObjectId(id)) {
+        throw new Error(`Invalid test ID: ${id}`);
+      }
+      return new mongoose.Types.ObjectId(id);
+    });
+
+    const tests = await testService.getTestsByIds(testIds);
+
+    // Create the dictionary of test titles to scores
+    const dict = {};
+    tests.forEach((test) => {
+      dict[test.title] = scores[test._id.toString()]; // Ensure _id is converted to string
+    });
+
+    res.json(dict);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/:testId", isAuth, async (req, res) => {

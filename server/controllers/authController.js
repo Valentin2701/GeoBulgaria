@@ -17,7 +17,7 @@ router.post("/register", async (req, res, next) => {
     });
 
     res.cookie("auth", result.token);
-    res.json({user: result.user, message: "Registered successfully!"});
+    res.json({ user: result.user, message: "Registered successfully!" });
   } catch (err) {
     return next(err);
   }
@@ -29,7 +29,7 @@ router.post("/login", async (req, res, next) => {
     const result = await authService.login(userData);
 
     res.cookie("auth", result.token);
-    res.json({user: result.user, message: "Logged in succesfully"});
+    res.json({ user: result.user, message: "Logged in succesfully" });
   } catch (err) {
     return next(err);
   }
@@ -40,8 +40,12 @@ router.post("/logout", isAuth, (req, res) => {
   res.end();
 });
 
-router.get("/profile", (req, res) => {
-  res.json(req.user || null);
-})
+router.get("/profile", async (req, res) => {
+  if (!req.user) res.json(null);
+  else {
+    const user = await authService.getUser(req.user._id);
+    res.json(user);
+  }
+});
 
 export { router };

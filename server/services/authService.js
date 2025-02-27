@@ -29,3 +29,5 @@ export const login = async (userData) => {
 
   return { user, token };
 };
+
+export const getUser = (id) => User.findById(id);

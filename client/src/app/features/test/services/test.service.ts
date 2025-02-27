@@ -23,6 +23,10 @@ export class TestService {
     return this.http.get<Test>(`/api/tests/${this.testId()}`);
   }
 
+  getUserTests(){
+    return this.http.get<{ [key: string]: number } | null>(`/api/tests/userTests`);
+  }
+
   submitTest(){
     return this.http.post<Number>(`/api/tests/${this.testId()}`, this.answers());
   }
