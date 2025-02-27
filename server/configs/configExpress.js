@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 
 const corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: process.env.FE_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
