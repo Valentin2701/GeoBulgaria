@@ -1,5 +1,4 @@
 import * as jwt from "../lib/jsonwebtoken.js";
-import { SECRET } from "../config.js";
 
 export const authMiddleware = async (req, res, next) => {
   const token = req.cookies["auth"];
@@ -7,7 +6,7 @@ export const authMiddleware = async (req, res, next) => {
   if (!token) return next();
 
   try {
-    const decodedToken = await jwt.verify(token, SECRET);
+    const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
 
     req.user = decodedToken;
   } catch (err) {
