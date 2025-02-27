@@ -1,4 +1,4 @@
 export const environment = {
     URL: 'http://localhost:4200',
-    APIURL: 'http://localhost:5000',
+    APIURL: 'https://geobulgaria-1.onrender.com',
 };

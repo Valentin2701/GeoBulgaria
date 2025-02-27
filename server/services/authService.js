@@ -7,7 +7,7 @@ export const register = async (userData) => {
 
   const token = await jwt.sign(
     { _id: user._id, username: user.username, email: user.email },
-    SECRET
+    process.env.SECRET_KEY
   );
 
   return { user, token };
@@ -23,7 +23,7 @@ export const login = async (userData) => {
   
   const token = await jwt.sign(
     { _id: user._id, username: user.username, email: user.email },
-    SECRET
+    process.env.SECRET_KEY
   );
 
   return { user, token };
