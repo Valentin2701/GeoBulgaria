@@ -8,7 +8,7 @@ export const appInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   if (request.url.startsWith('/api')) {
     request = request.clone({
-      url: request.url.replace('/api', environment.APIURL),
+      url: request.url.replace('/api', environment.API_URL),
       withCredentials: true,
     });
   }
